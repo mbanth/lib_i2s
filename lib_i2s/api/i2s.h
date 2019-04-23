@@ -225,14 +225,22 @@ void i2s_master(client i2s_callback_if i2s_i,
  *  It also uses xCORE200 specific features to remove the need for software
  *  BCLK generation which decreases processor overhead.
  *
+ * This version of i2s_frame_master has been modified to support 4 I2S ports.
+ * The BCLK signals appear on 4 1b ports.
+ * The LRCLK signals appear on a 4b port.
+ * The data signals appear on another 4b port.
+ *
  *  \param i2s_i          The I2S frame callback interface to connect to
  *                        the application
- *  \param p_dout         An array of data output ports
+ *  \param p_dout         An array of data output ports (must be a 4b port)
  *  \param num_out        The number of output data ports
  *  \param p_din          An array of data input ports
  *  \param num_in         The number of input data ports
- *  \param p_bclk         The bit clock output port
- *  \param p_lrclk        The word clock output port
+ *  \param p_bclk0        Bit clock output port 0
+ *  \param p_bclk1        Bit clock output port 1
+ *  \param p_bclk2        Bit clock output port 2
+ *  \param p_bclk3        Bit clock output port 3
+ *  \param p_lrclk        The word clock output port (must be a 4b port)
  *  \param p_mclk         Input port which supplies the master clock
  *  \param bclk           A clock that will get configured for use with
  *                        the bit clock
@@ -242,7 +250,10 @@ void i2s_frame_master(client i2s_frame_callback_if i2s_i,
                 static const size_t num_out,
                 in buffered port:32 (&?p_din)[num_in],
                 static const size_t num_in,
-                out port p_bclk,
+                out port p_bclk0,
+                out port p_bclk1,
+                out port p_bclk2,
+                out port p_bclk3,
                 out buffered port:32 p_lrclk,
                 in port p_mclk,
                 clock bclk);
