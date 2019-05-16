@@ -152,6 +152,7 @@ static void i2s_frame_slave0(client i2s_frame_callback_if i2s_i,
             if (num_in)
                 i2s_i.receive(num_in << 1, in_samps);
         }//main loop, runs until user restart or synch error
+        printint(1);
     }// while(1)
 }
 
