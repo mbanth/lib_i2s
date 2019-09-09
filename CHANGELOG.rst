@@ -1,8 +1,8 @@
 I2S library change log
 ======================
 
-3.0.0_demo_1
-------------
+3.0.0_demo
+----------
 
   * CHANGE: Frame master hardcoded to 16kHz
 
